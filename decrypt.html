@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypt Chat - Decrypt</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #7c3aed, #a855f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav button.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            color: #a855f7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white; 
+            font-size: 16px;
+            font-family: inherit;
+        }
+        
+        .form-group select {
+            background: #1a1a2e;
+            border: 1px solid #7c3aed;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a855f7'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+
+        .form-group select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .file-input-box {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+        }
+        
+        .file-input-box input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-input-label {
+            display: block;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(45deg, #7c3aed, #a855f7);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+     <header class="header">
+        <div class="logo">
+    <img src="WhatsApp Image 2025-09-21 at 2.16.45 PM.jpeg" alt="Crypt Chat Logo" class="logo-icon">
+    Crypt Chat
+</div>
+        <nav class="nav">
+            <a href="index.html" style="text-decoration:none;"><button>Start</button></a>
+            <a href="encrypt.html" style="text-decoration:none;"><button>Encrypt</button></a>
+            <button class="active">Decrypt</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3>Insert Encoded Image</h3>
+            </div>
+            <div class="form-group">
+                <div class="file-input-box">
+                    <input type="file" id="decrypt-image" accept="image/png">
+                    <label for="decrypt-image" class="file-input-label">Upload a PNG you previously encoded.</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Settings</h3>
+            </div>
+            
+            <div class="form-group">
+                <label for="decrypt-model">Encryption Model</label>
+                <select id="decrypt-model">
+                    <option value="chacha20">chacha20</option>
+                    <option value="aes">AES</option>
+                    <option value="hybrid">hybrid</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="steganography-model">Steganography</label>
+                <select id="steganography-model">
+                    <option value="lsb">LSB (Least Significant Bit)</option>
+                    <option value="dct">DCT (Discrete Cosine Transform)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="decrypt-password">Password</label>
+                <input type="password" id="decrypt-password" placeholder="Enter the password">
+            </div>
+
+            <button class="btn-primary">Decrypt</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        © 2025 Crypt Chat
+    </footer>
+</body>
+</html>
